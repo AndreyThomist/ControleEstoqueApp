@@ -1,0 +1,65 @@
+import React from 'react'
+import { View, Text, StyleSheet, Button, Image, TouchableOpacity } from 'react-native'
+import Colors from '../../helpers/Colors'
+import Card from '../ui/Card'
+const Item = (props) => {
+  return (
+    <Card style={styles.product}>
+      <TouchableOpacity style={styles.touchable}>
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: props.imageUrl }} style={styles.image} />
+        </View>
+        <View style={styles.details}>
+          <Text style={styles.name}>{props.name}</Text>
+          <Text style={styles.quantity}><Text>Quantidade:</Text>{props.quantity}</Text>
+        </View>
+
+        <View style={styles.actions}>
+          <Button title="Atualizar" color={Colors.secondary} />
+        </View>
+      </TouchableOpacity>
+    </Card>
+  )
+}
+
+const styles = StyleSheet.create({
+  product: {
+    height: 250,
+    margin: 20,
+  },
+  touchable: {
+    borderRadius: 10,
+    overflow: 'hidden',
+    paddingBottom:5
+  },
+  name:{
+    fontSize: 17,
+    marginVertical: 2
+  },
+  imageContainer: {
+    width: '100%',
+    height: '60%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    overflow: 'hidden'
+  },
+  image: {
+    width: '100%',
+    height: '100%'
+  },
+  details: {
+    alignItems: 'center',
+    height: '17%',
+    padding: 10
+  },
+  actions: {
+    marginTop:5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '23%',
+    paddingHorizontal: 20
+  }
+});
+
+export default Item;
