@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   },
   name:{
     fontSize: 17,
+    fontFamily:'exo2-bold',
     marginVertical: 2
   },
   imageContainer: {
@@ -43,6 +44,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     overflow: 'hidden'
   },
+  quantity:{
+    fontFamily:'exo2-italic'
+  },  
   image: {
     width: '100%',
     height: '100%'
