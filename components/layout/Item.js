@@ -1,11 +1,20 @@
-import React from 'react'
+import React,{useCallback} from 'react'
 import { View, Text, StyleSheet, Button, Image, TouchableOpacity } from 'react-native'
 import Colors from '../../helpers/Colors'
 import Card from '../ui/Card'
 const Item = (props) => {
+  const { navigation } = props;
+
+  const detailScreenHandler = () => {
+      navigation.navigate('DetailScreen', {
+        title: props.name,
+        id: props.id
+      })
+  }
+
   return (
     <Card style={styles.product}>
-      <TouchableOpacity style={styles.touchable}>
+      <TouchableOpacity style={styles.touchable} onPress={detailScreenHandler}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: props.imageUrl }} style={styles.image} />
         </View>
@@ -15,7 +24,7 @@ const Item = (props) => {
         </View>
 
         <View style={styles.actions}>
-          <Button title="Atualizar" color={Colors.secondary} />
+          <Button title="Ver" onPress={detailScreenHandler} color={Colors.secondary} />
         </View>
       </TouchableOpacity>
     </Card>
@@ -30,11 +39,11 @@ const styles = StyleSheet.create({
   touchable: {
     borderRadius: 10,
     overflow: 'hidden',
-    paddingBottom:5
+    paddingBottom: 5
   },
-  name:{
+  name: {
     fontSize: 17,
-    fontFamily:'exo2-bold',
+    fontFamily: 'exo2-bold',
     marginVertical: 2
   },
   imageContainer: {
@@ -44,9 +53,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     overflow: 'hidden'
   },
-  quantity:{
-    fontFamily:'exo2-italic'
-  },  
+  quantity: {
+    fontFamily: 'exo2-italic'
+  },
   image: {
     width: '100%',
     height: '100%'
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   actions: {
-    marginTop:5,
+    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

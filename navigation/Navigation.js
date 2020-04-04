@@ -4,9 +4,9 @@ import { createAppContainer } from 'react-navigation';
 import { Platform  } from 'react-native'
 
 import ItemOverviewScreen from  '../screens/ItemOverviewScreen'
+import ItemDetailScreen from '../screens/ItemDetailScreen'
 
 import Colors from '../helpers/Colors';
-
 
 const defaultOptions = {
     headerStyle:{
@@ -16,13 +16,14 @@ const defaultOptions = {
 }
 
 const ItemStack = createStackNavigator({
-    listagemItens:ItemOverviewScreen
+    listagemItens:ItemOverviewScreen,
+    DetailScreen:ItemDetailScreen
 },{
     defaultNavigationOptions :defaultOptions
 })
 
 const drawerStack = createDrawerNavigator({
-    listagemItens:ItemStack
+    Itens:ItemStack
 },
 {
     defaultNavigationOptions:defaultOptions

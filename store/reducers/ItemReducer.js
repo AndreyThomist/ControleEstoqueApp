@@ -1,18 +1,23 @@
 
 import Item from '../../models/Item'
+import { FETCH_ITEMS } from '../actions/items';
 
-const dummyProducts = [
-    new Item('1','https://i.imgur.com/JFWdvQd.png','Caneta Azul ','u1','f1',10),
-    new Item('2','https://i.imgur.com/HoVChfQ.png','Borracha Faber Castel','u1','f2',2),
-    new Item('3','https://i.imgur.com/TT6q02x.png','Papel Higiênico mili','u1','f3',2),
-];
+
 
 const initialState = {
-    items:dummyProducts,
-    usersItems:dummyProducts.find(element => element.userId === "u1")
+    items:[],
+    usersItems:[]
 }
 
 const ItemReducer = (state=initialState,actions) => {
+    switch(actions.type){
+        case FETCH_ITEMS:
+            console.log(actions.resData)
+        return {
+            items:actions.resData,
+            usersItems:actions.resData.find(element => element.userId === "u1")
+        }
+    }
     return state;
 }
 

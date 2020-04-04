@@ -1,5 +1,5 @@
 class Item{
-    constructor(id,imageUrl,name,userId,provider,quantity){
+    constructor(id,imageUrl,userId,name,provider,quantity){
         this.id = id;
         this.imageUrl = imageUrl;
         this.userId = userId;

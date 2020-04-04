@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import ItemReducer from './store/reducers/ItemReducer'
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore,applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import Navigation from './navigation/Navigation'
 import {AppLoading}  from 'expo'
 import * as Font from 'expo-font';
-
+import ReduxThunk from 'redux-thunk'
 console.log(ItemReducer)
 
 const combinedReducers = combineReducers({
-  itens: ItemReducer
+  items: ItemReducer
 })
 
-const store = createStore(combinedReducers)
-
+const store = createStore(combinedReducers,applyMiddleware(ReduxThunk))
 
 const fetchFonts = () => {
     return Font.loadAsync({
