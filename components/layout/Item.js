@@ -13,7 +13,7 @@ const Item = (props) => {
   }
 
   return (
-    <Card style={styles.product}>
+    <Card style={styles.product} key={props.id} >
       <TouchableOpacity style={styles.touchable} onPress={detailScreenHandler}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: props.imageUrl }} style={styles.image} />

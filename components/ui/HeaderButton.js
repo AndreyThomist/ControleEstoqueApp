@@ -3,7 +3,7 @@ import {HeaderButton} from 'react-navigation-header-buttons'
 import {Ionicons} from '@expo/vector-icons'
 
 const button = (props) => {
-    return <HeaderButton {...props} iconSize={23} IconComponent={Ionicons} />
+    return <HeaderButton  {...props} iconSize={23} IconComponent={Ionicons} />
 }   
 
 export default button;

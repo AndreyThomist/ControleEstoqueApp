@@ -23,7 +23,7 @@ const ItemStack = createStackNavigator({
 })
 
 const drawerStack = createDrawerNavigator({
-    Itens:ItemStack
+    Items:ItemStack
 },
 {
     defaultNavigationOptions:defaultOptions

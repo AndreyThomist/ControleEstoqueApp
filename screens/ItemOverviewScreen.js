@@ -14,7 +14,6 @@ const ItemOverView = (props) => {
         fetchItems();
     }, [fetchItems])
 
-    console.log(items)
 
     const fetchItems = useCallback(async () => {
         setIsLoading(true)
