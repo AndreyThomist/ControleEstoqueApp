@@ -21,8 +21,8 @@ const ItemReducer = (state=initialState,actions) => {
             }
         case DELETE_ITEM:
             return {
-                items:state.items.find(element => element != actions.id),
-                usersItems:state.items.find(element => element != actions.id)
+                items:state.items.filter(element => element.id != actions.id),
+                usersItems:state.items.filter(element => element.id != actions.id)
             }
     }
     return state;
