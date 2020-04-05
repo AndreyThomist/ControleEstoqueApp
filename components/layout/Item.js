@@ -22,7 +22,6 @@ const Item = (props) => {
           <Text style={styles.name}>{props.name}</Text>
           <Text style={styles.quantity}><Text>Quantidade:</Text>{props.quantity}</Text>
         </View>
-
         <View style={styles.actions}>
           <Button title="Ver" onPress={detailScreenHandler} color={Colors.secondary} />
         </View>

@@ -34,10 +34,10 @@ const ItemOverView = (props) => {
 
 ItemOverView.navigationOptions = nav => {
     return {
-        headerTitle: "Listagem de itens",
+        headerTitle: "List of items",
         headerLeft: () => {
             return <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item color="white" iconName={Platform.OS === "android" ? 'md-menu' : 'ios-menu'} onPress={() => {
+                <Item title="toggle" color="white" iconName={Platform.OS === "android" ? 'md-menu' : 'ios-menu'} onPress={() => {
                     nav.navigation.toggleDrawer();
                 }} />
             </HeaderButtons>
