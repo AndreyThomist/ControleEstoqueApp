@@ -6,10 +6,11 @@ import Navigation from './navigation/Navigation'
 import {AppLoading}  from 'expo'
 import * as Font from 'expo-font';
 import ReduxThunk from 'redux-thunk'
-console.log(ItemReducer)
+import ProviderReducer from './store/reducers/providerReducer'
 
 const combinedReducers = combineReducers({
-  items: ItemReducer
+  items: ItemReducer,
+  providers:ProviderReducer
 })
 
 const store = createStore(combinedReducers,applyMiddleware(ReduxThunk))

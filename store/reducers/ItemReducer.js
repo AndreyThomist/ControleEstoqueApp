@@ -1,8 +1,6 @@
 
 import Item from '../../models/Item'
-import { FETCH_ITEMS, DELETE_ITEM } from '../actions/items';
-
-
+import { FETCH_ITEMS, DELETE_ITEM, CREATE_ITEM } from '../actions/items';
 
 const initialState = {
     items:[],
@@ -16,6 +14,11 @@ const ItemReducer = (state=initialState,actions) => {
             items:actions.resData,
             usersItems:actions.resData.find(element => element.userId === "u1")
         }
+        case CREATE_ITEM:
+            return {
+                items:state.items.concat(actions.item),
+                usersItems:state.items.concat(actions.item)
+            }
         case DELETE_ITEM:
             return {
                 items:state.items.find(element => element != actions.id),

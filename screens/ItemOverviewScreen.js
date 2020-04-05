@@ -5,21 +5,28 @@ import { useSelector, useDispatch } from 'react-redux'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import HeaderButton from '../components/ui/HeaderButton'
 import * as ItemsActions from '../store/actions/items'
+import * as ProvidersActions from '../store/actions/provider'
 
 const ItemOverView = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch();
     const items = useSelector(state => state.items.items)
     useEffect(() => {
+        setIsLoading(true);
         fetchItems();
+        fetchProviders().then(res => {
+            setIsLoading(false);
+        });
     }, [fetchItems])
 
 
     const fetchItems = useCallback(async () => {
-        setIsLoading(true)
         await dispatch(ItemsActions.fecthItems());
-        setIsLoading(false);
     }, [dispatch, setIsLoading])
+
+    const fetchProviders = useCallback(async () => {
+        await dispatch(ProvidersActions.fetchProviders());
+    },[dispatch])
 
     if (isLoading) {
         return <View style={styles.spinner}>
