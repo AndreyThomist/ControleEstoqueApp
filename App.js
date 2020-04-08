@@ -7,21 +7,19 @@ import {AppLoading}  from 'expo'
 import * as Font from 'expo-font';
 import ReduxThunk from 'redux-thunk'
 import ProviderReducer from './store/reducers/providerReducer'
-
+import authReducer from './store/reducers/authReducer'
 const combinedReducers = combineReducers({
   items: ItemReducer,
-  providers:ProviderReducer
+  providers:ProviderReducer,
+  auth:authReducer
 })
-
 const store = createStore(combinedReducers,applyMiddleware(ReduxThunk))
-
 const fetchFonts = () => {
     return Font.loadAsync({
       'exo2-bold':require('./assets/fonts/Exo2-BoldItalic.ttf'),
       'exo2-italic':require('./assets/fonts/Exo2-Italic.ttf')
     })
 }
-
 export default function App() {
 
   const [fontLoaded, setFontLoaded] = useState(false);

@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react'
-import { View, FlatList, StyleSheet, Platform, ActivityIndicator } from 'react-native'
+import { View, FlatList, StyleSheet, Platform,Text, ActivityIndicator } from 'react-native'
 import ItemComponent from '../components/layout/Item'
 import { useSelector, useDispatch } from 'react-redux'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
@@ -9,8 +9,10 @@ import * as ProvidersActions from '../store/actions/provider'
 
 const ItemOverView = (props) => {
     const [isLoading, setIsLoading] = useState(false)
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const dispatch = useDispatch();
     const items = useSelector(state => state.items.items)
+    const auth = useSelector(state => state.auth)
     useEffect(() => {
         setIsLoading(true);
         fetchItems();
@@ -19,14 +21,19 @@ const ItemOverView = (props) => {
         });
     }, [fetchItems])
 
-
     const fetchItems = useCallback(async () => {
         await dispatch(ItemsActions.fecthItems());
     }, [dispatch, setIsLoading])
 
     const fetchProviders = useCallback(async () => {
         await dispatch(ProvidersActions.fetchProviders());
-    },[dispatch])
+    }, [dispatch])
+
+    const refreshHandler = useCallback(async () => {
+        setIsRefreshing(true);
+        await fetchItems();
+        setIsRefreshing(false);
+    })
 
     if (isLoading) {
         return <View style={styles.spinner}>
@@ -34,7 +41,13 @@ const ItemOverView = (props) => {
         </View>
     }
 
-    return <FlatList keyExtractor={(item) => item.id.toString()} data={items} renderItem={({ item }) => {
+    if (items == 0) {
+        return <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                <Text>No Items Found</Text>
+        </View>
+    }
+
+    return <FlatList refreshing={isRefreshing} onRefresh={refreshHandler} keyExtractor={(item) => item.id.toString()} data={items} renderItem={({ item }) => {
         return <ItemComponent navigation={props.navigation} id={item.id} name={item.name} quantity={item.quantity} imageUrl={item.imageUrl} />
     }} />
 }

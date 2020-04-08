@@ -7,7 +7,9 @@ const Item = (props) => {
 
   const detailScreenHandler = () => {
       navigation.navigate('DetailScreen', {
-        title: props.name,
+        name: props.name,
+        imageUrl:props.imageUrl,
+        quantity:props.quantity,
         id: props.id
       })
   }

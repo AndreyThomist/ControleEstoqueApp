@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { View,Text, StyleSheet, TextInput } from 'react-native'
-import { Form } from 'formik';
 const Input = (props) => {
     return (
-        <View style={{ ...styles.container, ...props.styles }}>
+        <View style={{ ...styles.container,...props.estilo }}>
             <Text>{props.label}</Text>
             <View style={styles.formContainer}>
             <TextInput

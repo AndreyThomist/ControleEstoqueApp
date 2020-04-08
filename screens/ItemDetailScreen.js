@@ -4,24 +4,28 @@ import { useSelector,useDispatch } from 'react-redux'
 import * as ActionsItem from '../store/actions/items'
 
 const ItemDetailScreen = (props) => {
-    const dispatch = useDispatch();
     const id = props.navigation.getParam('id')
-    const item = useSelector(state => state.items.items.find(element => element.id == id))
+    const imageUrl = props.navigation.getParam('id')
+    const quantity = props.navigation.getParam('quantity')
+    const name = props.navigation.getParam('name')
+    
+    const dispatch = useDispatch();
     const confirmDeleteHandler = () => {
-        Alert.alert('Confirm!','Do you really wish to delete it?',[{text:'no',style:'destructive'},{text:'yes',style:'destructive',onPress:deleteItemHandler.bind(this,item.id)}])
+        Alert.alert('Confirm!','Do you really wish to delete it?',[{text:'no',style:'destructive'},{text:'yes',style:'destructive',onPress:deleteItemHandler.bind(this,id)}])
     }
     const deleteItemHandler = useCallback( async (id) => {
         await dispatch(ActionsItem.deleteItem(id));
         props.navigation.goBack();
-    },[dispatch,id])
+    },[dispatch])
 
+   
     return <View>
         <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{ uri: item.imageUrl }}></Image>
+            <Image style={styles.image} source={{ uri: imageUrl }}></Image>
         </View>
         <View style={styles.detail}>
-            <Text style={styles.name}>{item['name']}</Text>   
-            <Text style={styles.quantityNumber}><Text style={styles.quantity}>Quantidade:</Text>{item.quantity}</Text>   
+            <Text style={styles.name}>{name}</Text>   
+            <Text style={styles.quantityNumber}><Text style={styles.quantity}>Quantidade:</Text>{quantity}</Text>   
         </View>
         <View style={styles.actions}>
             <Button title="EDIT" />

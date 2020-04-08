@@ -9,9 +9,7 @@ export const fecthItems = () => {
       const items = [];
       const resData = await response.json();
       for(const x in resData){
-        if(resData[x]){
           items.push(new Item(x.toString(),resData[x].imageUrl,resData[x].name,resData[x].name,resData[x].provider,resData[x].quantity));
-        }
       }
       dispatch({
           type:FETCH_ITEMS,
