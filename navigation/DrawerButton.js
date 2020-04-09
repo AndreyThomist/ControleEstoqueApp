@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { View, Button, SafeAreaView, StyleSheet } from 'react-native'
 import { DrawerItems } from 'react-navigation-drawer';
+import * as AuthActions from '../store/actions/auth'
+import { useDispatch } from 'react-redux';
 
 const DrawerButton = (props) => {
-
-    const logoutHandler = () => {
-        
-    }
+    const dispatch = useDispatch();
+    const logoutHandler = useCallback(async () => {
+          await dispatch(AuthActions.logout());  
+          props.navigation.navigate('Login')
+    },[dispatch])
 
     return <SafeAreaView style={{ flex: 1, paddingTop: 25 }}>
         <View style={{ ...styles.container, ...props.styles }}>

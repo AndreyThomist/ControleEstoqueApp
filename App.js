@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import ItemReducer from './store/reducers/ItemReducer'
 import { combineReducers, createStore,applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import Navigation from './navigation/Navigation'
+import NavigationContainer from './navigation/NavigationContainer'
 import {AppLoading}  from 'expo'
 import * as Font from 'expo-font';
 import ReduxThunk from 'redux-thunk'
 import ProviderReducer from './store/reducers/providerReducer'
 import authReducer from './store/reducers/authReducer'
+
 const combinedReducers = combineReducers({
   items: ItemReducer,
   providers:ProviderReducer,
@@ -36,7 +37,7 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-      <Navigation />
+      <NavigationContainer />
     </Provider>
   );
 }

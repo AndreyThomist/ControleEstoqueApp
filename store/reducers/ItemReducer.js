@@ -1,6 +1,6 @@
 
 import Item from '../../models/Item'
-import { FETCH_ITEMS, DELETE_ITEM, CREATE_ITEM } from '../actions/items';
+import { FETCH_ITEMS, DELETE_ITEM,FETCH_USER_ITEMS, CREATE_ITEM } from '../actions/items';
 
 const initialState = {
     items:[],
@@ -10,10 +10,8 @@ const initialState = {
 const ItemReducer = (state=initialState,actions) => {
     switch(actions.type){
         case FETCH_ITEMS:
-            console.log(actions.resData)
         return {
             items:actions.resData,
-            usersItems:actions.resData.find(element => element.userId === "u1")
         }
         case CREATE_ITEM:
             return {
@@ -21,14 +19,21 @@ const ItemReducer = (state=initialState,actions) => {
                 items:state.items.concat(actions.item),
                 usersItems:state.items.concat(actions.item)
             }
+        case FETCH_USER_ITEMS:
+            console.log(actions.resData)
+            return {
+                ...state,
+                usersItems:actions.resData
+            }
         case DELETE_ITEM:
             return {
                 ...state,
                 items:state.items.filter(element => element.id != actions.id),
                 usersItems:state.items.filter(element => element.id != actions.id)
-            }
+        }
+        default:
+            return state;
     }
-    return state;
 }
 
 export default ItemReducer

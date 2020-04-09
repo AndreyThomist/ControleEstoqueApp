@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator,DrawerItems } from 'react-navigation-drawer'
-import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { Platform } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import ItemOverviewScreen from '../screens/ItemOverviewScreen'
@@ -22,8 +22,6 @@ const defaultOptions = {
 }
 
 const ItemStack = createStackNavigator({
-    Startup: StartupScreen,
-    Login: LoginScreen,
     listagemItens: ItemOverviewScreen,
     DetailScreen: ItemDetailScreen,
 }, {
@@ -32,7 +30,8 @@ const ItemStack = createStackNavigator({
 
 const adminStack = createStackNavigator({
     Admin: UserOverviewScreen,
-    addItem: AddItemScreen
+    addItem: AddItemScreen,
+    DetailScreen: ItemDetailScreen,
 }, {
     defaultNavigationOptions: defaultOptions
 })
@@ -54,13 +53,27 @@ const drawerStack = createDrawerNavigator({
             },
 
         }
-    }
+        
+    },
 },
     {
         defaultNavigationOptions: defaultOptions,
-        contentComponent:(props) => {
-             return <DrawerButton title="LOG OUT" {...props}></DrawerButton>
+        contentComponent: (props) => {
+            return <DrawerButton title="LOG OUT" {...props}></DrawerButton>
         }
     });
 
-export default createAppContainer(drawerStack);
+const AuthStack = createStackNavigator({
+    Startup: StartupScreen,
+    Login: LoginScreen
+},{
+    defaultNavigationOptions:defaultOptions
+})
+
+const switchStack = createSwitchNavigator({
+    Auth: AuthStack,
+    Drawer: drawerStack,
+})
+
+
+export default createAppContainer(switchStack);

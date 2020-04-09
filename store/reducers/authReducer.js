@@ -1,4 +1,4 @@
-import { LOG_IN, START_UP } from "../actions/auth";
+import { LOG_IN, LOG_OUT, AUTHENTICATE } from "../actions/auth";
 
 
 
@@ -18,6 +18,15 @@ const authReducer = (state = initialState, actions) => {
                 email: actions.data.email,
                 userId: actions.data.userId
             }
+        case AUTHENTICATE:
+            return JSON.parse(actions.auth)
+        case LOG_OUT:
+            return {
+                token: null,
+                expiresIn: null,
+                email: null,
+                userId: null
+            };
         default:
             return state;
     }

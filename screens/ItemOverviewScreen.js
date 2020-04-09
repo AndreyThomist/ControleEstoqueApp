@@ -8,11 +8,20 @@ import * as ItemsActions from '../store/actions/items'
 import * as ProvidersActions from '../store/actions/provider'
 
 const ItemOverView = (props) => {
+    const {navigation} = props;
     const [isLoading, setIsLoading] = useState(false)
     const [isRefreshing, setIsRefreshing] = useState(false);
     const dispatch = useDispatch();
     const items = useSelector(state => state.items.items)
     const auth = useSelector(state => state.auth)
+
+    useEffect(() => {
+        const unsubscribe = props.navigation.addListener('willFocus', fetchItems);
+        return () => {
+            unsubscribe.remove();
+       }
+      },[fetchItems]);
+
     useEffect(() => {
         setIsLoading(true);
         fetchItems();

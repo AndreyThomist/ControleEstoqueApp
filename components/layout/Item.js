@@ -6,6 +6,7 @@ const Item = (props) => {
   const { navigation } = props;
 
   const detailScreenHandler = () => {
+    console.log(props.imageUrl)
       navigation.navigate('DetailScreen', {
         name: props.name,
         imageUrl:props.imageUrl,
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
   product: {
     height: 250,
     margin: 20,
+    borderRadius:10
   },
   touchable: {
     borderRadius: 10,

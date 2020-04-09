@@ -5,7 +5,7 @@ import * as ActionsItem from '../store/actions/items'
 
 const ItemDetailScreen = (props) => {
     const id = props.navigation.getParam('id')
-    const imageUrl = props.navigation.getParam('id')
+    const imageUrl = props.navigation.getParam('imageUrl')
     const quantity = props.navigation.getParam('quantity')
     const name = props.navigation.getParam('name')
     
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     image: {
-        width: '95%',
+        width: '100%',
         height: '100%'
     },
     actions:{
@@ -71,9 +71,9 @@ const styles = StyleSheet.create({
 
 
 ItemDetailScreen.navigationOptions = props => {
-    const title = props.navigation.getParam('title')
+    const name = props.navigation.getParam('name')
     return {
-        headerTitle: title
+        headerTitle: name
     }
 }
 
