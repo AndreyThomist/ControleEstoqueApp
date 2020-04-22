@@ -53,7 +53,6 @@ const drawerStack = createDrawerNavigator({
             },
 
         }
-        
     },
 },
     {

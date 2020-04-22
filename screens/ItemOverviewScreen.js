@@ -8,7 +8,6 @@ import * as ItemsActions from '../store/actions/items'
 import * as ProvidersActions from '../store/actions/provider'
 
 const ItemOverView = (props) => {
-    const {navigation} = props;
     const [isLoading, setIsLoading] = useState(false)
     const [isRefreshing, setIsRefreshing] = useState(false);
     const dispatch = useDispatch();
@@ -31,7 +30,7 @@ const ItemOverView = (props) => {
     }, [fetchItems])
 
     const fetchItems = useCallback(async () => {
-        await dispatch(ItemsActions.fecthItems());
+        await dispatch(ItemsActions.fetchItems());
     }, [dispatch, setIsLoading])
 
     const fetchProviders = useCallback(async () => {

@@ -12,7 +12,6 @@ let timer;
 export const logout = () => {
     return async dispatch => {
         clearTimeout(timer);
-        console.log('entrou');
        await  AsyncStorage.removeItem('userData')
         dispatch({
             type:LOG_OUT
@@ -60,6 +59,7 @@ export const login = (email, password) => {
             expiresIn: new Date().getTime() + resData.expiresIn * 1000,
             userId: resData.localId
         }))
+        console.log(resData)
         dispatch(expirationInterval(resData.expiresIn))
         dispatch({
             type: LOG_IN,

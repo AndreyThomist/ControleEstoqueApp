@@ -11,7 +11,7 @@ const StartupScreen = (props) => {
         const data = await AsyncStorage.getItem('userData');
         const auth = JSON.parse(data)
         if (auth == null || !auth.token) {
-            props.navigation.replace('Login')
+            props.navigation.reset('Login')
         } else {
             const expires = auth.expiresIn;
             const now = new Date().getTime();
@@ -19,7 +19,7 @@ const StartupScreen = (props) => {
                 dispatch(AuthActions.authenticate(data))
                 props.navigation.navigate('listagemItens')
             } else {
-                props.navigation.replace('Login')
+                props.navigation.reset('Login')
             }
         }
         setIsLoading(false);

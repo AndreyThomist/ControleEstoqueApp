@@ -7,9 +7,9 @@ import { useDispatch } from 'react-redux';
 const DrawerButton = (props) => {
     const dispatch = useDispatch();
     const logoutHandler = useCallback(async () => {
-          await dispatch(AuthActions.logout());  
-          props.navigation.navigate('Login')
-    },[dispatch])
+        await dispatch(AuthActions.logout());
+        props.navigation.navigate('Login')
+    }, [dispatch])
 
     return <SafeAreaView style={{ flex: 1, paddingTop: 25 }}>
         <View style={{ ...styles.container, ...props.styles }}>
@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    buttonContainer:{
-        width:'90%',
-        flexDirection:'column',
-        paddingHorizontal:10,
-        marginTop:5
+    buttonContainer: {
+        width: '90%',
+        flexDirection: 'column',
+        paddingHorizontal: 10,
+        marginTop: 5
     }
 })
 

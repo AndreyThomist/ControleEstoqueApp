@@ -4,6 +4,8 @@ import { useSelector,useDispatch } from 'react-redux'
 import * as ActionsItem from '../store/actions/items'
 
 const ItemDetailScreen = (props) => {
+
+    
     const id = props.navigation.getParam('id')
     const imageUrl = props.navigation.getParam('imageUrl')
     const quantity = props.navigation.getParam('quantity')
@@ -18,6 +20,12 @@ const ItemDetailScreen = (props) => {
         props.navigation.goBack();
     },[dispatch])
 
+
+    const editItemHandler = useCallback((id) => {
+        props.navigation.navigate('addItem',{
+            id:id
+        })
+    },[dispatch])
    
     return <View>
         <View style={styles.imageContainer}>
@@ -28,7 +36,7 @@ const ItemDetailScreen = (props) => {
             <Text style={styles.quantityNumber}><Text style={styles.quantity}>Quantidade:</Text>{quantity}</Text>   
         </View>
         <View style={styles.actions}>
-            <Button title="EDIT" />
+            <Button title="EDIT" onPress={editItemHandler.bind(this,id)} />
             <Button color="red" onPress={confirmDeleteHandler} title="DELETE" />
         </View>
     </View>
