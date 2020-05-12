@@ -8,7 +8,6 @@ import ItemOverviewScreen from '../screens/ItemOverviewScreen'
 import ItemDetailScreen from '../screens/ItemDetailScreen'
 import UserOverviewScreen from '../screens/User/UserOverviewScreen'
 import AddItemScreen from '../screens/AddItemScreen'
-import LoginScreen from '../screens/auth/LoginScreen'
 import StartupScreen from '../screens/auth/StartupScreen'
 import DrawerButton from './DrawerButton'
 
@@ -62,16 +61,18 @@ const drawerStack = createDrawerNavigator({
         }
     });
 
-const AuthStack = createStackNavigator({
+const StartUpStack = createStackNavigator({
     Startup: StartupScreen,
-    Login: LoginScreen
 },{
     defaultNavigationOptions:defaultOptions
 })
 
+
+
+
 const switchStack = createSwitchNavigator({
-    Auth: AuthStack,
-    Drawer: drawerStack,
+    Startup: StartUpStack,
+    Drawer: drawerStack
 })
 
 

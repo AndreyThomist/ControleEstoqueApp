@@ -8,7 +8,7 @@ const DrawerButton = (props) => {
     const dispatch = useDispatch();
     const logoutHandler = useCallback(async () => {
         await dispatch(AuthActions.logout());
-        props.navigation.navigate('Login')
+        props.navigation.navigate('Startup')
     }, [dispatch])
 
     return <SafeAreaView style={{ flex: 1, paddingTop: 25 }}>
