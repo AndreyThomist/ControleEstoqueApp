@@ -23,12 +23,10 @@ const StartupScreen = (props) => {
 
     
     const loginHandler = useCallback(async (values) => {
-        console.log('entroiu')
         setIsLoading(true);
         try{
             await dispatch(AuthActions.login(values.email, values.password))
         } catch (e) {
-            console.log(e.message)
             setError(e.message);
             showAlert();
         }

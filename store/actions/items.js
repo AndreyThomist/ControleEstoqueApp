@@ -48,7 +48,6 @@ export const createItem = (item) => {
       },
       body: JSON.stringify(item)
     })
-
     const resData = await response.json();
     const newItem = new Item(resData, item.imageUrl, item.userId, item.name, item.provider, item.quantity);
     dispatch({
@@ -60,6 +59,7 @@ export const createItem = (item) => {
 }
 
 export const editItem = (item) => {
+  console.log(item)
   return async (dispatch, getState) => {
     const userId = getState().auth.userId
     item.userId = userId;
@@ -72,7 +72,6 @@ export const editItem = (item) => {
     })
     const resData = await response.json();
     const updatedItem = new Item(item.id, item.imageUrl, item.userId, item.name, item.provider, item.quantity);
-    console.log(updatedItem)
     dispatch({
       type: UPDATE_ITEM,
       item: updatedItem
