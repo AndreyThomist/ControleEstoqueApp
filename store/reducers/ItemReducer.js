@@ -28,10 +28,13 @@ const ItemReducer = (state = initialState, actions) => {
             const items = [...state.items]
             const index =  items.findIndex(item => item.id === actions.item.id)
             items[index] = actions.item
-            const usersItems = [...state.usersItems]
-            const userItemindex = usersItems.findIndex(item => item.id === actions.item.id)
-            if(userItemindex){
-                usersItems[userItemindex] = actions.item
+            let usersItems = [];
+            if(state.usersItems){
+                 usersItems = [...state.usersItems]
+                 userItemindex = usersItems.findIndex(item => item.id === actions.item.id)
+                 if(userItemindex){
+                    usersItems[userItemindex] = actions.item
+                }
             }
             return {
                 ...state,

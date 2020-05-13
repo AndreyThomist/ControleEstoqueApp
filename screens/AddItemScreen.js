@@ -15,18 +15,14 @@ const AddItemScreen = (props) => {
     let itemEdit  = useSelector(state => state.items.items.filter(element => element != null && element.id === id))[0];
     const createItemHandler = useCallback(async (values) => {
         if (itemEdit) {
+            console.log('ediçãoi')
             values.id = id;
             await dispatch(ActionsItems.editItem(values))
         } else {
             await dispatch(ActionsItems.createItem(values))
         }
-        props.navigation.navigate('DetailScreen',{
-            id:values.id,
-            imageUrl:values.imageUrl,
-            quantity:values.quantity,
-            name:values.name
-        });
-    }, [dispatch])
+       props.navigation.navigate('listagemItens')
+    }, [dispatch,itemEdit])
 
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
