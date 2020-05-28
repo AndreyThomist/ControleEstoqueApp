@@ -11,10 +11,8 @@ export const fetchItems = () => {
     const items = [];
     const resData = await response.json();
     for (const x in resData) {
-      console.log(resData[x]);
       items.push(new Item(x.toString(), resData[x].imageUrl, resData[x].userId, resData[x].name, resData[x].provider, resData[x].quantity));
     }
-    console.log(items)
     dispatch({
       type: FETCH_ITEMS,
       resData: items

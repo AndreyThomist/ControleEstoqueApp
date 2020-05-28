@@ -41,6 +41,7 @@
     "babel-preset-expo": "~8.0.0",
     "fetch-mock": "^9.10.1",
     "jest-expo": "^37.0.0",
+    "node-fetch": "^2.6.0",
     "redux-mock-store": "^1.5.4"
   },
   "private": true
