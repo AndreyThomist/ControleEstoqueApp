@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "marginVertical": 10,
+      "width": "85%",
+    }
+  }
+>
+  <Text>
+    nome
+  </Text>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#000000",
+        "borderBottomWidth": 1,
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      errorMessage={null}
+      label="nome"
+      rejectResponderTermination={true}
+      style={Object {}}
+      touched={false}
+      underlineColorAndroid="transparent"
+      value="ronie"
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "marginVertical": 5,
+      }
+    }
+  />
+</View>
+`;
