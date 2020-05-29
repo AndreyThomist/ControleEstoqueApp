@@ -1,74 +1,46 @@
+import * as Auth from '../store/actions/auth'
+import thunk from 'redux-thunk'
+import 'isomorphic-fetch';
+import configureMockStore from 'redux-mock-store'
+import config from '../helpers/config'
 
-import { AsyncStorage } from 'react-native'
-export const LOG_IN = "LOG_IN"
-export const START_UP = "START_UP"
-export const LOG_OUT = "LOG_OUT"
-export const AUTHENTICATE = 'AUTHENTICATE'
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
 
-import config from '../../helpers/config'
+const email = "teste@gmail.com"
+const password = "123456"
 
-let timer;
 
-export const logout = () => {
-    return async dispatch => {
-        clearTimeout(timer);
-        await AsyncStorage.removeItem('userData')
-        dispatch({
-            type: LOG_OUT
-        })
-    }
-}
-const expirationInterval = (timeout) => {
-    if (timeout) {
-        return dispatch => {
-            timer = setTimeout(() => {
-                dispatch(logout());
-            }, timeout * 1000)
-        }
-    }
-}
-export const authenticate = (auth) => {
-    return dispatch => {
-        dispatch({
-            type: AUTHENTICATE,
-            auth: auth
-        })
-    }
-}
-export const login = (email, password) => {
-    return async dispatch => {
-        try {
-            console.log('request')
-            const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${config.apiKey}`, {
-                method: "post",
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email,
-                    password,
-                    returnSecureToken: true
-                })
+describe('actions', () => {
+    it('buscou os dados do servidor', async () => {
+        const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${config.apiKey}`, {
+            method: "post",
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                password,
+                returnSecureToken: true
             })
-            const resData = await response.json();
-            await AsyncStorage.setItem('userData', JSON.stringify({
+        })
+        const resData = await response.json();
+  
+        const expectedActions = [{
+            type: "LOG_IN",
+            data: {
                 email: resData.email,
                 token: resData.idToken,
-                expiresIn: new Date().getTime() + resData.expiresIn * 1000,
+                expiresIn: resData.expiresIn,
                 userId: resData.localId
-            }))
-            dispatch(expirationInterval(resData.expiresIn))
-            dispatch({
-                type: LOG_IN,
-                data: {
-                    email: resData.email,
-                    token: resData.idToken,
-                    expiresIn: resData.expiresIn,
-                    userId: resData.localId
-                }
-            })
-        } catch (e) {
-            throw new error('Problema no login')
-        }
-    }
-}
+            }
+        }]
+        const store = mockStore();
+        return store.dispatch(Auth.login(email,password)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions)
+        })
+    })
+
+})
+
+
