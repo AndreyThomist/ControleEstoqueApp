@@ -67,9 +67,6 @@ const StartUpStack = createStackNavigator({
     defaultNavigationOptions:defaultOptions
 })
 
-
-
-
 const switchStack = createSwitchNavigator({
     Startup: StartUpStack,
     Drawer: drawerStack
