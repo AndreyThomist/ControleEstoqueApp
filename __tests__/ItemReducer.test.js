@@ -21,7 +21,7 @@ describe('testando items reducer',() => {
     })
 
     it('testando create item',() => {
-        const item = new Item((new Date().getTime() * (Math.random() + (10 - 1) + 1),'u1','Ronie','P1',10);
+        const item = new Item((new Date().getTime() * (Math.random() + (10 - 1) + 1),'u1','Ronie','P1',10));
         const actions = {
             type:CREATE_ITEM,
             item
