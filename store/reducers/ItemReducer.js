@@ -45,7 +45,7 @@ const ItemReducer = (state = initialState, actions) => {
             return {
                 ...state,
                 items: state.items.filter(element => element.id != actions.id),
-                usersItems: state.items.filter(element => element.id != actions.id)
+                usersItems: state.usersItems.filter(element => element.id != actions.id)
             }
         default:
             return state;
